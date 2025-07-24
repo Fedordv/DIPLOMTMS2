@@ -8,6 +8,7 @@ import Register from './pages/Auth/Register';
 import PrivateRoute from './components/PrivateRoute';
 import Settings from './pages/Settings/Settings';
 import TrendsPage from './pages/Trends/TrendsPage';
+import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 
 function App() {
   return (
@@ -18,8 +19,9 @@ function App() {
           <Route path="movie/:id" element={<Movie />} />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
-           <Route path="trends" element={<TrendsPage />} />
-           
+          <Route path="trends" element={<TrendsPage />} />
+          <Route path="*" element={<NotFoundPage />} /> 
+
           <Route element={<PrivateRoute />}>
             <Route path="favorites" element={<Favorites />} />
             <Route path="settings" element={<Settings />} />
