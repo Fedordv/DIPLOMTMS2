@@ -2,7 +2,7 @@ import { Outlet } from 'react-router-dom';
 import Header from './Header';
 import Sidebar from './Sidebar';
 import Footer from './Footer';
-import '../../styles/layout.scss'; // Стили для Layout
+import '../../styles/layout.scss'; 
 
 const Layout = () => {
   return (
@@ -11,7 +11,7 @@ const Layout = () => {
       <div className="container">
         <Sidebar />
         <main className="main-content">
-          <Outlet /> {/* Здесь будут отображаться страницы (Home, Favorites и др.) */}
+          <Outlet /> 
         </main>
       </div>
       <Footer />

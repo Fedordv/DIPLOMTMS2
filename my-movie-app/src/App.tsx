@@ -9,6 +9,7 @@ import PrivateRoute from './components/PrivateRoute';
 import Settings from './pages/Settings/Settings';
 import TrendsPage from './pages/Trends/TrendsPage';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
+import SliderPage from './pages/SliderPage';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
           <Route path="trends" element={<TrendsPage />} />
+          <Route path="/slider" element={<SliderPage />} />
           <Route path="*" element={<NotFoundPage />} /> 
 
           <Route element={<PrivateRoute />}>

@@ -10,7 +10,10 @@
     "verbatimModuleSyntax": false,
     "strict": true,
     "jsx": "preserve",
-    "types": ["vite/client"]
+    "types": ["vite/client"],
+    "paths": {
+      "swiper/*": ["./node_modules/swiper/*"]
+    }
   }
 
 }

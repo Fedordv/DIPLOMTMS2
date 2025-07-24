@@ -14,6 +14,7 @@ interface MoviesState {
   isLoading: boolean;
   error: string | null;
   currentMovie: Movie | null;
+  
 }
 
 const initialState: MoviesState = {
