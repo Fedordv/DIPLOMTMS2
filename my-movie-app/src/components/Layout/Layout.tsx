@@ -3,6 +3,7 @@ import Header from './Header';
 import Sidebar from './Sidebar';
 import Footer from './Footer';
 import '../../styles/layout.scss'; 
+import CookieConsent from '../Cookie/CookieConsent';
 
 const Layout = () => {
   return (
@@ -15,6 +16,7 @@ const Layout = () => {
         </main>
       </div>
       <Footer />
+      <CookieConsent />
     </div>
   );
 };

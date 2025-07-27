@@ -35,22 +35,6 @@ const SliderPage = () => {
     <div className="slider-page">
       <h1 className="page-title">Популярные фильмы</h1>
       <MovieSlider movies={trendingList} />
-      
-      <div className="movies-grid">
-        <h2>Другие популярные фильмы</h2>
-        <div className="grid-container">
-          {trendingList.map((movie) => (
-            <div key={movie.imdbID} className="movie-card">
-              <img 
-                src={movie.Poster !== 'N/A' ? movie.Poster : '/placeholder.jpg'} 
-                alt={movie.Title} 
-              />
-              <h3>{movie.Title}</h3>
-              <p>{movie.Year}</p>
-            </div>
-          ))}
-        </div>
-      </div>
     </div>
   );
 };

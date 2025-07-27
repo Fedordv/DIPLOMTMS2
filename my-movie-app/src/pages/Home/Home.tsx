@@ -108,6 +108,12 @@ const Home = () => {
         >
           Вперед
         </button>
+        <button onClick={() => {
+          localStorage.removeItem('cookie_consent');
+          window.location.reload();
+        }}>
+          Сбросить cookie согласие
+        </button>
       </div>
     </div>
   );

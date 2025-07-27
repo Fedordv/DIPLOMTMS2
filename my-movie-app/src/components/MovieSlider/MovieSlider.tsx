@@ -21,10 +21,23 @@ const MovieSlider = ({ movies }: MovieSliderProps) => {
         modules={[Navigation, Pagination, Autoplay, EffectFade]}
         spaceBetween={0}
         slidesPerView={1}
-        navigation
-        pagination={{ clickable: true }}
-        autoplay={{ delay: 5000, disableOnInteraction: false }}
-        effect="fade"
+        navigation={{
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        }}
+        pagination={{ 
+          clickable: true,
+          el: '.swiper-pagination',
+          type: 'bullets',
+        }}
+        autoplay={{ 
+          delay: 5000, 
+          disableOnInteraction: false 
+        }}
+        effect={'fade'}
+        fadeEffect={{
+          crossFade: true
+        }}
         speed={1000}
         loop={true}
       >
@@ -91,6 +104,11 @@ const MovieSlider = ({ movies }: MovieSliderProps) => {
             </div>
           </SwiperSlide>
         ))}
+        
+        {/* Кастомные элементы управления */}
+        <div className="swiper-button-prev"></div>
+        <div className="swiper-button-next"></div>
+        <div className="swiper-pagination"></div>
       </Swiper>
     </div>
   );
