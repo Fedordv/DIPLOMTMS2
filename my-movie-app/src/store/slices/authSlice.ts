@@ -15,11 +15,12 @@ interface AuthState {
 }
 
 const initialState: AuthState = {
-  user: null,
-  isAuth: false,
+  user: JSON.parse(localStorage.getItem('user') || 'null'),
+  isAuth: !!localStorage.getItem('auth'),
   loading: false,
-  error: null,
+  error: null
 };
+
 
 const authSlice = createSlice({
   name: 'auth',
@@ -49,8 +50,10 @@ export const login = (credentials: { email: string; password: string }): AppThun
       dispatch(setLoading(true));
       dispatch(setError(null));
       
+
       const response = await authService.login(credentials);
       dispatch(setUser(response.user));
+      localStorage.setItem('auth', 'true');
       localStorage.setItem('auth', JSON.stringify(response.user));
     } catch (error) {
       dispatch(setError(error instanceof Error ? error.message : 'Login failed'));
@@ -79,6 +82,7 @@ export const logout = (): AppThunk => async (dispatch) => {
   await authService.logout();
   dispatch(logoutUser());
   localStorage.removeItem('auth');
+  localStorage.removeItem('user');
 };
 
 export const checkAuth = (): AppThunk => (dispatch) => {

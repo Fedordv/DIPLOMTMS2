@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import { FaHome, FaFire, FaHeart, FaCog, FaPlay } from 'react-icons/fa';
+import './Sidebar.scss'
 
 const Sidebar = () => {
   return (

@@ -2,17 +2,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { searchMovies } from '../../services/movieService';
-import { 
-  setMovies, 
-  setLoading, 
-  setError, 
-  setPage,
-  setTotalPages // Добавляем импорт
-} from '../../store/slices/moviesSlice';
+import {  setMovies,  setLoading, setError, setPage, setTotalPages } from '../../store/slices/moviesSlice';
 import { addToFavorites, removeFromFavorites } from '../../store/slices/favoritesSlice';
 import type { RootState, AppDispatch } from '../../store/store';
 import MovieCard from '../../components/MovieCard/MovieCard';
-import Search from '../../components/Search/Search';
 import './home.scss';
 
 const Home = () => {
@@ -42,7 +35,6 @@ const Home = () => {
           dispatch(setMovies(data.Search));
           dispatch(setPage(page));
           
-          // Рассчитываем общее количество страниц
           const totalResults = parseInt(data.totalResults || '0');
           const calculatedTotalPages = Math.ceil(totalResults / 10);
           dispatch(setTotalPages(calculatedTotalPages));
@@ -67,7 +59,6 @@ const Home = () => {
     }
   };
 
-  // Функция для изменения страницы
   const handlePageChange = (newPage: number) => {
     const params = new URLSearchParams(searchParams);
     params.set('page', newPage.toString());
@@ -79,7 +70,6 @@ const Home = () => {
 
   return (
     <div className="home-page">
-      <Search />
       {isLoading && <div className="loading">Loading...</div>}
       {error && <div className="error">{error}</div>}
       <div className="movies-grid">
@@ -114,6 +104,7 @@ const Home = () => {
         }}>
           Сбросить cookie согласие
         </button>
+
       </div>
     </div>
   );

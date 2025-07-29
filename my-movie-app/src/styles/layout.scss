@@ -4,13 +4,22 @@
   min-height: 100vh;
 }
 
+.container {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+}
+
 .header {
   background: #1a1a1a;
   color: white;
-  padding: 1rem;
+  padding: 1rem 20px;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 
   .logo a {
     color: #ff4d4d;
@@ -19,17 +28,26 @@
     text-decoration: none;
   }
 
-  .search-icon, .user-menu {
-    a {
-      color: white;
-      font-size: 1.2rem;
-    }
+  .desktop-search {
+    max-width: 600px;
+    flex: 1;
+    margin: 0 20px;
   }
-}
 
-.container {
-  display: flex;
-  flex: 1;
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .mobile-menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
 }
 
 .sidebar {
@@ -51,7 +69,8 @@
         align-items: center;
         gap: 0.5rem;
 
-        &:hover, &.active {
+        &:hover,
+        &.active {
           color: white;
         }
       }
@@ -61,9 +80,8 @@
 
 .main-content {
   flex: 1;
-  flex-wrap: wrap;
   padding: 2rem;
-  background: #121212; 
+  background: #121212;
   color: white;
 }
 
@@ -74,75 +92,108 @@
   padding: 1rem;
 }
 
-.header {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  padding: 1rem 2rem;
-  background-color: #1a1a1a;
-  color: white;
-  
-  .logo a {
-    color: #ff4d4d;
-    font-size: 1.5rem;
-    font-weight: bold;
-    text-decoration: none;
+// Карточки фильмов
+.movies-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.movie-card {
+  background: #1e1e1e;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: scale(1.03);
   }
 
-  .search-icon a, .user-menu a {
-    color: white;
-    font-size: 1.2rem;
-  }
-
-  .dropdown-container {
-    position: relative;
-  }
-
-  .user-btn {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: none;
-    border: none;
-    color: white;
-    cursor: pointer;
-    font-size: 1rem;
-    padding: 0.5rem;
-    border-radius: 4px;
-    
-    &:hover {
-      background: rgba(255, 255, 255, 0.1);
-    }
-  }
-
-  .dropdown-menu {
-    position: absolute;
-    right: 0;
-    top: 100%;
-    background: #2a2a2a;
-    border-radius: 4px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-    min-width: 180px;
-    z-index: 100;
-    overflow: hidden;
-  }
-
-  .dropdown-item {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
+  img {
     width: 100%;
-    padding: 0.75rem 1rem;
-    background: none;
-    border: none;
-    color: white;
-    text-align: left;
-    cursor: pointer;
-    text-decoration: none;
-    font-size: 0.9rem;
+    height: 370px;
+    object-fit: cover;
+  }
 
-    &:hover {
-      background: rgba(255, 255, 255, 0.1);
+  .movie-info {
+    padding: 15px;
+
+    h3 {
+      margin: 0 0 5px;
+      font-size: 1.1rem;
+      color: white;
     }
+
+    p {
+      margin: 0;
+      color: #aaa;
+      font-size: 0.9rem;
+    }
+  }
+}
+
+// Адаптивность
+@media (max-width: 1024px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    order: 2;
+    display: flex;
+    justify-content: space-around;
+
+    ul {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+
+      li {
+        margin: 0.5rem;
+      }
+    }
+  }
+
+  .main-content {
+    order: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    flex-wrap: wrap;
+
+    .desktop-search {
+      display: none;
+    }
+
+    .mobile-menu-toggle {
+      display: block;
+    }
+
+    .header-actions {
+      flex-direction: row;
+    }
+  }
+
+  .movies-grid {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 16px;
+  }
+
+  .movie-card {
+    img {
+      height: 280px;
+    }
+  }
+
+  .sidebar {
+    padding: 10px 0;
+  }
+
+  .main-content {
+    padding: 1rem;
   }
 }

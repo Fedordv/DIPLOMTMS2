@@ -108,10 +108,19 @@ const MoviePage = () => {
 
       <div className="movie-content">
         <div className="movie-poster">
-          <img 
-            src={movie.Poster !== 'N/A' ? movie.Poster : '/placeholder.jpg'} 
-            alt={movie.Title} 
-          />
+        <img
+            src={movie.Poster !== 'N/A' ? movie.Poster : '/images/placeholder.jpg'}
+            alt={movie.Title}
+            className="movie-poster-img"
+            onError={(e) => {
+              const img = e.currentTarget;
+              if (!img.dataset.fallback) {
+                img.src = '/images/placeholder.jpg';
+                img.dataset.fallback = 'true';
+              }
+            }}
+                />
+
         </div>
         
         <div className="movie-details">
