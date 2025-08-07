@@ -1,10 +1,14 @@
 import { NavLink } from 'react-router-dom';
 import { FaHome, FaFire, FaHeart, FaCog, FaPlay } from 'react-icons/fa';
-import './Sidebar.scss'
+import './Sidebar.scss';
 
-const Sidebar = () => {
+type SidebarProps = {
+  isOpen: boolean;
+};
+
+const Sidebar = ({ isOpen }: SidebarProps) => {
   return (
-    <nav className="sidebar">
+    <nav className={`sidebar ${isOpen ? 'open' : 'hidden'}`}>
       <ul>
         <li>
           <NavLink to="/" className={({ isActive }) => isActive ? 'active' : ''}>
@@ -23,7 +27,7 @@ const Sidebar = () => {
         </li>
         <li>
           <NavLink to="/slider" className="nav-link">
-            <FaPlay />Slider
+            <FaPlay /> Slider
           </NavLink>
         </li>
         <li>
@@ -37,6 +41,3 @@ const Sidebar = () => {
 };
 
 export default Sidebar;
-
-
-{/*  */}

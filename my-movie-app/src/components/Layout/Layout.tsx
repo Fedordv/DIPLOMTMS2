@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import Header from './Header';
 import Sidebar from './Sidebar';
@@ -6,15 +7,27 @@ import '../../styles/layout.scss';
 import CookieConsent from '../Cookie/CookieConsent';
 
 const Layout = () => {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isFiltersOpen, setIsFiltersOpen] = useState(false);
+
+  const toggleSidebar = () => setIsSidebarOpen(prev => !prev);
+  const toggleFilters = () => setIsFiltersOpen(prev => !prev);
+
   return (
     <div className="layout">
-      <Header />
+      <Header 
+        onToggleSidebar={toggleSidebar} 
+        onToggleFilters={toggleFilters} 
+      />
+      
       <div className="container">
-        <Sidebar />
+        <Sidebar isOpen={isSidebarOpen} />
+        
         <main className="main-content">
           <Outlet /> 
         </main>
       </div>
+
       <Footer />
       <CookieConsent />
     </div>
