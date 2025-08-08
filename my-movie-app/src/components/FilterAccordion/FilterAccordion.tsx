@@ -1,4 +1,5 @@
-import { useRef, useState, useEffect } from 'react';
+import { useState } from 'react';
+import './FilterAccordion.css';
 
 interface FilterAccordionProps {
   onYearChange: (year: string) => void;
@@ -7,39 +8,20 @@ interface FilterAccordionProps {
 
 const FilterAccordion = ({ onYearChange, onTypeChange }: FilterAccordionProps) => {
   const [isOpen, setIsOpen] = useState(false);
-  const buttonRef = useRef<HTMLButtonElement>(null);
-  const [position, setPosition] = useState({ top: 0, left: 0 });
-
-  // при открытии фильтра — рассчитать позицию кнопки
-  useEffect(() => {
-    if (isOpen && buttonRef.current) {
-      const rect = buttonRef.current.getBoundingClientRect();
-      setPosition({
-        top: rect.bottom + window.scrollY,
-        left: rect.left + window.scrollX,
-      });
-    }
-  }, [isOpen]);
 
   return (
     <div className="filter-accordion">
-      <button
-        ref={buttonRef}
+      <div
         className="accordion-toggle"
         onClick={() => setIsOpen(!isOpen)}
       >
         Фильтры
         <span className={`arrow ${isOpen ? 'open' : ''}`}>▼</span>
-      </button>
+      </div>
 
       {isOpen && (
         <div
           className="accordion-content popover"
-          style={{
-            position: 'absolute',
-            top: `${position.top}px`,
-            left: `${position.left}px`,
-          }}
           onMouseLeave={() => setIsOpen(false)}
         >
           <div className="filter-group">

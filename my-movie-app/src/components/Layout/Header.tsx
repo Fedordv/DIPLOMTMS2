@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FaUser, FaSignOutAlt, FaCog, FaBars, FaFilter } from 'react-icons/fa';
 import { useDispatch } from 'react-redux';
 import { useAuth } from '../../hooks/useAuth';
@@ -10,14 +10,18 @@ import '../../styles/layout.scss';
 
 interface HeaderProps {
   onToggleSidebar: () => void;
-  onToggleFilters: () => void;
 }
 
-const Header = ({ onToggleSidebar, onToggleFilters }: HeaderProps) => {
+const Header = ({ onToggleSidebar }: HeaderProps) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const { user, isAuth } = useAuth();
   const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate();
+
+  const handleNavigateToSettings = () => {
+    navigate('/settings');
+  }
 
   const handleLogout = () => {
     dispatch(logout());
@@ -36,38 +40,34 @@ const Header = ({ onToggleSidebar, onToggleFilters }: HeaderProps) => {
       </div>
 
       <div className="header-actions">
-        <button className="mobile-menu-toggle" onClick={() => setIsSearchOpen(!isSearchOpen)}>
-          <FaBars />
-        </button>
-
-        <button className="filter-toggle" onClick={onToggleFilters}>
+        <div className="mobile-menu-toggle" onClick={() => setIsSearchOpen(!isSearchOpen)}>
           <FaFilter />
-        </button>
+        </div>
 
-        <button className="sidebar-toggle" onClick={onToggleSidebar}>
+        <div className="sidebar-toggle" onClick={onToggleSidebar}>
           <FaBars />
-        </button>
+        </div>
 
         <div className="user-menu">
           {isAuth ? (
             <div className="dropdown-container">
-              <button
+              <div
                 className="user-btn"
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                 onBlur={() => setTimeout(() => setIsDropdownOpen(false), 200)}
               >
                 <FaUser />
                 <span>{user?.name || 'User'}</span>
-              </button>
+              </div>
 
               {isDropdownOpen && (
                 <div className="dropdown-menu">
-                  <Link to="/settings" className="dropdown-item" onClick={() => setIsDropdownOpen(false)}>
+                  <div className="dropdown-item" onClick={handleNavigateToSettings}>
                     <FaCog /> Настройки
-                  </Link>
-                  <button className="dropdown-item" onClick={handleLogout}>
+                  </div>
+                  <div className="dropdown-item" onClick={handleLogout}>
                     <FaSignOutAlt /> Выйти
-                  </button>
+                  </div>
                 </div>
               )}
             </div>

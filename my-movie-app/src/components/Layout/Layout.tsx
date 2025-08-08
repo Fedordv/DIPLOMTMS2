@@ -8,16 +8,14 @@ import CookieConsent from '../Cookie/CookieConsent';
 
 const Layout = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [isFiltersOpen, setIsFiltersOpen] = useState(false);
 
   const toggleSidebar = () => setIsSidebarOpen(prev => !prev);
-  const toggleFilters = () => setIsFiltersOpen(prev => !prev);
 
   return (
     <div className="layout">
       <Header 
         onToggleSidebar={toggleSidebar} 
-        onToggleFilters={toggleFilters} 
+
       />
       
       <div className="container">

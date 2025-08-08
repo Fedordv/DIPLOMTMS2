@@ -1,6 +1,6 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 import type { Movie } from '../../types/types';
-import { API_KEY, BASE_URL, getTrendingMovies } from '../../services/movieService';
+import { getTrendingMovies } from '../../services/movieService';
 import type { AppDispatch } from '../store';
 
 interface MoviesState {
