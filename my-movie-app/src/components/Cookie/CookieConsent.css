@@ -1,0 +1,29 @@
+/* src/styles/CookieConsent.css */
+.cookie-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #222;
+  color: #fff;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 999;
+  font-size: 14px;
+}
+
+.cookie-banner a {
+  color: #4ea8de;
+  text-decoration: underline;
+}
+
+.cookie-banner button {
+  background: #4ea8de;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-radius: 4px;
+}

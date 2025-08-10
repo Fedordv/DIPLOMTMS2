@@ -1,0 +1,124 @@
+  body {
+    font-family: 'Arial', sans-serif;
+    background-color: #121212;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+  }
+
+  a {
+    color: #ff4d4d;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  button {
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 1rem;
+  }
+
+  .movies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    
+    @media (max-width: 768px) {
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 16px;
+      padding: 15px;
+    }
+
+    @media (max-width: 480px) {
+      grid-template-columns: 1fr;
+      padding: 10px;
+      gap: 12px;
+    }
+  }
+
+  .movie-card {
+    background: #1e1e1e;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+      transform: scale(1.03);
+      box-shadow: 0 8px 20px rgba(255, 77, 77, 0.1);
+    }
+
+    img {
+      width: 100%;
+      height: 370px;
+      object-fit: cover;
+
+      @media (max-width: 768px) {
+        height: 300px;
+      }
+
+      @media (max-width: 480px) {
+        height: 220px;
+      }
+    }
+
+    .movie-info {
+      padding: 15px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      h3 {
+        margin: 0 0 5px 0;
+        color: white;
+        font-size: 1.1rem;
+
+        a {
+          color: inherit;
+
+          &:hover {
+            color: #ff4d4d;
+          }
+        }
+      }
+
+      p {
+        margin: 0;
+        color: #aaa;
+        font-size: 0.9rem;
+      }
+
+      .movie-meta {
+        margin-top: 10px;
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.85rem;
+        color: #bbb;
+      }
+
+      .favorite-btn {
+        background: none;
+        border: none;
+        margin-top: 10px;
+        font-size: 1.4rem;
+        color: #ff4d4d;
+        transition: transform 0.2s;
+
+        &:hover {
+          transform: scale(1.2);
+        }
+
+        &.active {
+          color: #ff4d4d;
+        }
+      }
+    }
+  }
+

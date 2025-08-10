@@ -1,0 +1,43 @@
+.sidebar {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    width: 200px;
+    height: calc(100vh - 60px);
+    background: #2a2a2a;
+    padding: 1rem;
+    overflow-y: auto;
+    z-index: 900;
+    transition: transform 0.3s ease-in-out;
+    &.hidden {
+        transform: translateX(-100%);
+    }
+    &.open {
+        transform: translateX(0);
+    }
+    ul {
+        list-style: none;
+        padding: 0;
+        li {
+            margin-bottom: 1rem;
+            a {
+                color: #ccc;
+                text-decoration: none;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                font-size: 24px;
+                &:hover,
+                &.active {
+                    color: white;
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 769px) {
+    .sidebar {
+        transform: translateX(0) !important; // Всегда видно на десктопе
+    }
+}
